@@ -92,24 +92,7 @@ const About = () => {
               <h3 className="text-xl font-semibold text-gray-800 text-center">Kashish Singh</h3>
               <p className="text-center text-gray-600 text-sm italic">Machine Learning Engineer</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
-              <img
-                src="Asees.jpg"
-                alt="Developer 3"
-                className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white object-fit"
-              />
-              <h3 className="text-xl font-semibold text-gray-800 text-center">Kashish Singh</h3>
-              <p className="text-center text-gray-600 text-sm italic">UI/UX Designer</p>
-            </div>
-            <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
-              <img
-                src="anshu.jpg"
-                alt="Developer 4"
-                className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white"
-              />
-              <h3 className="text-xl font-semibold text-gray-800 text-center">Anshu Srivastava</h3>
-              <p className="text-center text-gray-600 text-sm italic">Data Scientist</p>
-            </div>
+          
           </div>
         </section>
       </div>
