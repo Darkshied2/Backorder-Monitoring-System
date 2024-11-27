@@ -7,19 +7,20 @@ const About = () => {
       <header className="header" style={{ backgroundColor: 'black' }}>
         <nav className="navbar bg-opacity-30 bg-black backdrop-blur-lg p-4 rounded-md shadow-lg flex justify-between">
           {/* Logo or Title on the Left */}
-          <div className="navbar-logo text-white font-bold text-lg">
-            Backorder Vision
+          <div className="navbar-logo text-white font-bold text-lg"><a href="/">
+          Backorder Vision
+          </a>
           </div>
           {/* Links on the Right */}
           <ul className="navbar-list flex space-x-6">
-            <li className="navbar-item">
+            {/* <li className="navbar-item">
               <a
                 href="/challenge"
                 className="navbar-link text-white font-semibold hover:bg-orange-500 hover:text-black transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg no-underline"
               >
                 Challenge
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </header>
@@ -75,20 +76,20 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
               <img
-                src="Radhika.jpg"
+                src="Harsh.jpg"
                 alt="Developer 1"
                 className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white object-fill"
               />
-              <h3 className="text-xl font-semibold text-gray-800 text-center">Radhika</h3>
+              <h3 className="text-xl font-semibold text-gray-800 text-center">Harsh Kumar</h3>
               <p className="text-center text-gray-600 text-sm italic">Full Stack Developer</p>
             </div>
             <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
               <img
-                src="Hirdesh.jpg"
+                src="kashish.jpg"
                 alt="Developer 2"
                 className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-lg object-cover"
               />
-              <h3 className="text-xl font-semibold text-gray-800 text-center">Hirdesh</h3>
+              <h3 className="text-xl font-semibold text-gray-800 text-center">Kashish Singh</h3>
               <p className="text-center text-gray-600 text-sm italic">Machine Learning Engineer</p>
             </div>
             <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
@@ -97,16 +98,16 @@ const About = () => {
                 alt="Developer 3"
                 className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white object-fit"
               />
-              <h3 className="text-xl font-semibold text-gray-800 text-center">Asees</h3>
+              <h3 className="text-xl font-semibold text-gray-800 text-center">Kashish Singh</h3>
               <p className="text-center text-gray-600 text-sm italic">UI/UX Designer</p>
             </div>
             <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow transform hover:scale-105">
               <img
-                src="Harsh.jpg"
+                src="anshu.jpg"
                 alt="Developer 4"
                 className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white"
               />
-              <h3 className="text-xl font-semibold text-gray-800 text-center">Harsh Kumar</h3>
+              <h3 className="text-xl font-semibold text-gray-800 text-center">Anshu Srivastava</h3>
               <p className="text-center text-gray-600 text-sm italic">Data Scientist</p>
             </div>
           </div>
