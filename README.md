@@ -81,11 +81,11 @@ Project is open source. Feel free to make your own version. All you need to do i
 
 ## Notice:
 
-This project has been archived. Means that it is no longer actively maintained by developer. Free free to fork, use and maintain your own version. You can check my new portfolio template [here](https://github.com/Kashish0931/)
+This project has been archived. Means that it is no longer actively maintained by developer. Free free to fork, use and maintain your own version. You can check my new portfolio template [here](https://github.com/Darkshied2/)
 ### ❤️ Connect with me:
 
 You can find my all contact links [here](#).
 
-💙 Follow me on GitHub for more such projects. [@Kashish0931](https://github.com/Kashish0931).                           
+💙 Follow me on GitHub for more such projects. [@Darkshied2](https://github.com/Darkshied2)                      
 
-💙 Follow me on Linkedin for more such projects. [@Kashish Singh](https://www.linkedin.com/in/kashish-singh-b78a85236/)
+💙 Follow me on Linkedin for more such projects. [@Harsh Kumar](https://linkedin.com/in/harshkmr)
