@@ -50,7 +50,7 @@ Follow these steps to set up the project on your local machine:
 
 ### **1. Clone the Repository**
 ```console
-git clone https://github.com/kashish0931/Backorder-Monitoring-System.git
+git clone https://github.com/Darkshied2/Backorder-Monitoring-System.git
 cd Backorder-Monitoring-System
 # **Backend Setup for Backorder Monitoring System**
 
@@ -71,7 +71,7 @@ Make sure you have the following installed on your system:
 ### **1. Clone the Repository**
 Clone the project repository and navigate to the backend directory:
 ```bash
-git clone https://github.com/kashish0931/Backorder-Monitoring-System.git
+git clone https://github.com/Darkshied2/Backorder-Monitoring-System.git
 cd Backorder-Monitoring-System/backend
 ```
 
