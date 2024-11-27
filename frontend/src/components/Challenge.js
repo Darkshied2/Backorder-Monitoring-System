@@ -1,22 +1,22 @@
-import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../AuthContext';
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { AuthContext } from "../AuthContext";
 
 function Challenge() {
   // State for form data input
   const [formData, setFormData] = useState({
-    national_inv: '',
-    lead_time: '',
-    sales_1_month: '',
-    pieces_past_due: '',
-    perf_6_month_avg: '',
-    in_transit_qty: '',
-    local_bo_qty: '',
-    deck_risk: '',
-    oe_constraint: '',
-    ppap_risk: '',
-    stop_auto_buy: '',
-    rev_stop: '',
+    national_inv: "",
+    lead_time: "",
+    sales_1_month: "",
+    pieces_past_due: "",
+    perf_6_month_avg: "",
+    in_transit_qty: "",
+    local_bo_qty: "",
+    deck_risk: "",
+    oe_constraint: "",
+    ppap_risk: "",
+    stop_auto_buy: "",
+    rev_stop: "",
   });
 
   // State for prediction result
@@ -36,8 +36,38 @@ function Challenge() {
 
   // Function to send input data to the backend and get the prediction
   const handlePredict = async () => {
+    // Validation: Check if all required fields are filled
+    const requiredFields = [
+      "national_inv",
+      "lead_time",
+      "sales_1_month",
+      "pieces_past_due",
+      "perf_6_month_avg",
+      "in_transit_qty",
+      "local_bo_qty",
+      "deck_risk",
+      "oe_constraint",
+      "ppap_risk",
+      "stop_auto_buy",
+      "rev_stop",
+    ];
+
+    // Find any fields that are empty
+    const emptyFields = requiredFields.filter(
+      (field) => !formData[field].toString().trim()
+    );
+
+    if (emptyFields.length > 0) {
+      alert(
+        `Please fill in all required fields: ${emptyFields
+          .map((field) => field.replace(/_/g, " "))
+          .join(", ")}`
+      );
+      return; // Stop execution if validation fails
+    }
+
     try {
-      // Ensure that all input fields have values, otherwise send default or placeholder values.
+      // Prepare the payload for the backend
       const payload = {
         ...formData,
         national_inv: formData.national_inv || 0,
@@ -56,14 +86,13 @@ function Challenge() {
 
       console.log(payload);
 
-
       const response = await axios.post(
-        'http://localhost:5000/predict',
+        "http://localhost:5000/predict",
         payload,
         {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         }
       );
@@ -74,19 +103,22 @@ function Challenge() {
       // Improved logging for axios errors
       if (error.response) {
         // Backend responded with a status code other than 2xx
-        console.error('Response data:', error.response.data);
-        console.error('Response status:', error.response.status);
-        console.error('Response headers:', error.response.headers);
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
 
-        alert('Prediction failed: ' + (error.response.data.msg || 'Unknown error from backend'));
+        alert(
+          "Prediction failed: " +
+            (error.response.data.msg || "Unknown error from backend")
+        );
       } else if (error.request) {
         // Request was made but no response received
-        console.error('Request data:', error.request);
-        alert('Prediction failed: No response from the backend.');
+        console.error("Request data:", error.request);
+        alert("Prediction failed: No response from the backend.");
       } else {
         // Something else happened in setting up the request
-        console.error('Error message:', error.message);
-        alert('Prediction failed: ' + error.message);
+        console.error("Error message:", error.message);
+        alert("Prediction failed: " + error.message);
       }
     }
   };
@@ -95,34 +127,29 @@ function Challenge() {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/user-history', {
+        const response = await axios.get("http://localhost:5000/user-history", {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         });
         console.log(response.data);
-        setHistory(response.data);  // Update state with the fetched history
+        setHistory(response.data); // Update state with the fetched history
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchHistory();
-
-
   }, [authToken, prediction]);
 
   console.log(history);
-
   return (
     <>
       <nav className="navbar bg-opacity-30 bg-black backdrop-blur-lg p-4 rounded-md shadow-lg flex justify-between">
-        {/* Logo or Title on the Left */}
         <div className="navbar-logo text-white font-bold text-lg">
-          Backorder Vision
+          <a href="/">Backorder Vision</a>
         </div>
-        {/* Links on the Right */}
         <ul className="navbar-list flex space-x-6">
           <li className="navbar-item">
             <a
@@ -135,94 +162,40 @@ function Challenge() {
         </ul>
       </nav>
       <div className="p-6 bg-gradient-to-r from-orange-400 to-orange-600 rounded-lg shadow-lg">
-        {/* Prediction Form */}
         <h2 className="text-2xl font-bold mb-4 text-white">Backorder Prediction</h2>
         <form className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <input
-              name="national_inv"
-              placeholder="National inv"
-              value={formData.national_inv}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="lead_time"
-              placeholder="Lead time"
-              value={formData.lead_time}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="sales_1_month"
-              placeholder="Sales 1 month"
-              value={formData.sales_1_month}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="pieces_past_due"
-              placeholder="Pieces Past Due"
-              value={formData.pieces_past_due}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="perf_6_month_avg"
-              placeholder="Perf 6 Month Avg"
-              value={formData.perf_6_month_avg}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="in_transit_qty"
-              placeholder="In-transit qty"
-              value={formData.in_transit_qty}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="local_bo_qty"
-              placeholder="Local Bo Qty"
-              value={formData.local_bo_qty}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="deck_risk"
-              placeholder="Deck Risk (0 or 1)"
-              value={formData.deck_risk}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="oe_constraint"
-              placeholder="OE Constraint (0 or 1)"
-              value={formData.oe_constraint}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="ppap_risk"
-              placeholder="PPAP Risk (0 or 1)"
-              value={formData.ppap_risk}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="stop_auto_buy"
-              placeholder="Stop Auto Buy (0 or 1)"
-              value={formData.stop_auto_buy}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
-            <input
-              name="rev_stop"
-              placeholder="Rev Stop (0 or 1)"
-              value={formData.rev_stop}
-              onChange={handleChange}
-              className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
-            />
+            {[
+              { label: "National Inventory", name: "national_inv" },
+              { label: "Lead Time", name: "lead_time" },
+              { label: "Sales (1 Month)", name: "sales_1_month" },
+              { label: "Pieces Past Due", name: "pieces_past_due" },
+              { label: "Performance (6-Month Avg)", name: "perf_6_month_avg" },
+              { label: "In-Transit Quantity", name: "in_transit_qty" },
+              { label: "Local BO Quantity", name: "local_bo_qty" },
+              { label: "Deck Risk (0 or 1)", name: "deck_risk" },
+              { label: "OE Constraint (0 or 1)", name: "oe_constraint" },
+              { label: "PPAP Risk (0 or 1)", name: "ppap_risk" },
+              { label: "Stop Auto Buy (0 or 1)", name: "stop_auto_buy" },
+              { label: "Rev Stop (0 or 1)", name: "rev_stop" },
+            ].map(({ label, name }, index) => (
+              <div key={index}>
+                <label
+                  htmlFor={name}
+                  className="block text-white font-semibold"
+                >
+                  {label}
+                </label>
+                <input
+                  id={name}
+                  name={name}
+                  placeholder={label}
+                  value={formData[name]}
+                  onChange={handleChange}
+                  className="p-2 border border-gray-300 rounded w-full bg-gradient-to-r from-gray-200 to-gray-300 text-black"
+                />
+              </div>
+            ))}
           </div>
           <button
             type="button"
@@ -233,11 +206,21 @@ function Challenge() {
           </button>
         </form>
 
-        {/* Display Prediction Result */}
-        {prediction !== null && <div className="mt-4 text-white">Prediction: {prediction}</div>}
+        {/* Display Prediction Explanation */}
+        {prediction !== null && (
+          <div className="mt-4 text-white">
+            <div className="font-bold">Prediction:</div> {prediction}
+            <div className="mt-2">
+              {prediction === "1" ? (
+                <p>The object is likely to go on backorder.</p>
+              ) : (
+                <p>The object is not likely to go on backorder.</p>
+              )}
+            </div>
+          </div>
+        )}
 
-        {/* Display Prediction History */}
-        <h2 className="text-2xl font-bold mt-6 text-white">Prediction History</h2>
+<h2 className="text-2xl font-bold mt-6 text-white">Prediction History</h2>
         <table className="mt-2 w-full border-collapse">
           <thead>
             <tr className="bg-gray-800 text-white">
@@ -258,7 +241,7 @@ function Challenge() {
           </thead>
           <tbody>
             {history
-              .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) // Sort by timestamp
+              .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
               .map((entry, index) => (
                 <tr key={index} className="border-b">
                   <td className="py-2 text-gray-300 border-r text-center">{entry.input_data.deck_risk}</td>
@@ -273,18 +256,14 @@ function Challenge() {
                   <td className="py-2 text-gray-300 border-r text-center">{entry.input_data.rev_stop}</td>
                   <td className="py-2 text-gray-300 border-r text-center">{entry.input_data.sales_1_month}</td>
                   <td className="py-2 text-gray-300 border-r text-center">{entry.input_data.stop_auto_buy}</td>
-                  <td className="py-2 text-gray-300 text-center bg-gradient-to-r from-yellow-600 to-orange-400 font-bold">{entry.prediction}</td>
+                  <td className="py-2 text-gray-300 text-center">{entry.prediction}</td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-
-      {/* Footer Section */}
-      <footer className="footer text-center py-2 pt-3 bg-gray-900">
-        <p className="footer-text text-gray-300 text-sm">
-          &copy; Backorder Vision - 2024. All rights reserved.
-        </p>
+      <footer className="footer text-center py-2 bg-gray-900">
+        <p className="text-gray-300 text-sm">&copy; Backorder Vision - 2024. All rights reserved.</p>
       </footer>
     </>
   );
