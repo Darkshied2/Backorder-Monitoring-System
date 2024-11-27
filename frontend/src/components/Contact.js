@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import Navbar from './Navbar';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +22,7 @@ const Contact = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:5000/contact', { // Change to the appropriate route
+      const response = await fetch('http://localhost:5000/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,9 +41,30 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <div className="max-w-7xl mx-auto p-5 font-sans">
-        {/* <Navbar /> */}
+    <div
+      className="min-h-screen flex flex-col"
+      style={{
+        background: 'linear-gradient(to bottom right, #fff3e0, #ffe0b2)',
+      }}
+    >
+      <nav className="navbar bg-opacity-30 bg-black backdrop-blur-lg p-4 rounded-md shadow-lg flex justify-between">
+        {/* Logo or Title on the Left */}
+        <div className="navbar-logo text-white font-bold text-lg">
+          <a href="/">Backorder Vision</a>
+        </div>
+        {/* Links on the Right */}
+        <ul className="navbar-list flex space-x-6">
+          <li className="navbar-item">
+            <a
+              href="/about"
+              className="navbar-link text-white font-semibold hover:bg-orange-500 hover:text-black transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg no-underline"
+            >
+              About
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div className="flex-grow flex items-center justify-center p-5">
         <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gray-50">
           <h2 className="text-3xl font-semibold text-center py-10">Contact Us</h2>
           {submitted ? (
@@ -97,14 +117,14 @@ const Contact = () => {
                   className="p-2 mt-1 mb-4 rounded border border-gray-300 w-full resize-y min-h-[100px]"
                 />
               </label>
-              <button type="submit" className="p-2 rounded bg-green-600 text-white hover:bg-green-700 transition duration-300">
+              <button type="submit" className="bg-yellow-400 text-purple-900 p-3 rounded-lg hover:bg-yellow-500 w-full transition-all duration-300 shadow-md font-bold">
                 Submit
               </button>
             </form>
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
