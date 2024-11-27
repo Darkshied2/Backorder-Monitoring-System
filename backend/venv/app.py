@@ -58,6 +58,34 @@ def login():
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token), 200
 
+
+@app.route('/contact', methods=['POST'])
+def contact():
+    try:
+        # Retrieve data from the frontend contact form submission
+        data = request.get_json()
+
+        # Check if all required fields are provided
+        required_fields = ['name', 'email', 'subject', 'message']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({"msg": f"Missing {field} field"}), 400
+
+        # Store the contact message in the MongoDB collection
+        contact_collection.insert_one({
+            'name': data['name'],
+            'email': data['email'],
+            'subject': data['subject'],
+            'message': data['message'],
+            'timestamp': datetime.now()
+        })
+
+        return jsonify({"msg": "Message submitted successfully"}), 200
+    except Exception as e:
+        return jsonify({"msg": f"An error occurred: {str(e)}"}), 500
+
+
+
 # Route for prediction
 @app.route('/predict', methods=['POST'])
 @jwt_required()
