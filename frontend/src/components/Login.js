@@ -23,6 +23,31 @@ function Login() {
   };
 
   return (
+    <>
+    <nav className="navbar bg-opacity-30 bg-black backdrop-blur-lg p-4 rounded-md shadow-lg flex justify-between">
+        {/* Logo or Title on the Left */}
+        <div className="navbar-logo text-white font-bold text-lg"><a href="/">
+          Backorder Vision
+          </a>
+        </div>
+        {/* Links on the Right */}
+        <ul className="navbar-list flex space-x-6">
+          <li className="navbar-item">
+            {/* <a
+              href="/about"
+              className="navbar-link text-white font-semibold hover:bg-orange-500 hover:text-black transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg no-underline"
+            >
+              About
+            </a> */}
+                        <a
+              href="/contact"
+              className="navbar-link text-white font-semibold hover:bg-orange-500 hover:text-black transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg no-underline"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
     <div className="landing-page min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #fff3e0, #ffe0b2)' }}>
       <div className="p-8 rounded-lg shadow-lg w-96 mx-auto mt-20" style={{ background: 'linear-gradient(to bottom, #FF6F00, #FF3D00)' }}>
         <h2 className="text-3xl font-bold mb-6 text-center text-white">Login</h2>
@@ -51,6 +76,7 @@ function Login() {
         </p>
       </div>
     </div>
+    </>
   );
 }
 
