@@ -38,10 +38,18 @@ function Home() {
                         </li>
                         <li className="navbar-item">
                             <a
-                                href="/profile"
+                                href="/contact"
                                 className="navbar-link text-white font-semibold hover:bg-orange-500 hover:text-black transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg no-underline"
                             >
-                                Profile
+                                Contact
+                            </a>
+                        </li>
+                        <li className="navbar-item">
+                            <a
+                                href="/about"
+                                className="navbar-link text-white font-semibold hover:bg-orange-500 hover:text-black transition-all duration-300 transform hover:scale-105 px-4 py-2 rounded-lg no-underline"
+                            >
+                                About
                             </a>
                         </li>
 
@@ -49,7 +57,7 @@ function Home() {
                 </nav>
                 <div className="text-center mt-8">
                     <h1 className="title text-5xl font-extrabold drop-shadow-lg">
-                        Welcome to the Backorder Vision
+                        Welcome to the Backorder Monitering System
                     </h1>
                     <p className="subtitle mt-4 text-lg text-gray-300">
                         Predict and manage your inventory effectively with ease
